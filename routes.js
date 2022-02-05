@@ -68,6 +68,11 @@ router.delete("/deletepost/:id", async (req, res) => {
     }
 })
 
+router.get("/", async (req, res) => {
+
+    res.send("Page not found")
+})
+
 
 
 module.exports = router
