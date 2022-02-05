@@ -4,6 +4,10 @@ const Post = require("./models/Post")
 
 const router = express.Router()
 
+router.get("/", (req, res) => {
+    res.json({error: "Page not found"})
+})
+
 
 router.get("/getallposts", async (req, res) => {
     const posts = await Post.find()
@@ -66,10 +70,6 @@ router.delete("/deletepost/:id", async (req, res) => {
         res.status(404)
         res.send({ error: "Post does not exist! "})
     }
-})
-
-router.get("/", async (req, res) => {
-    res.send("Page not found")
 })
 
 module.exports = router

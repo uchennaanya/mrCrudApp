@@ -13,8 +13,11 @@ app.get('/', (req, res) => res.send(`<h1>Welcome!!! </h1>`))
 mongoose
 .connect(process.env.URI, { useNewUrlParser: true })
 .then(() => {
+
     app.use(express.json())
     app.use("/api", routes)
+
 })
+.catch(error => console.log('error', error.message) )
 
 app.listen(port, _ => console.log(` Server exterblished at ${port} `))
