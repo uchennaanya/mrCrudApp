@@ -1,28 +1,20 @@
 const express = require('express')
-const mongoose = require('mongoose')
+const app = express()
 
-const routes = require("./routes")
+const routes = require("./routes/routes")
+require('./db/db')
 
-var cors = require('cors')
+const cors = require('cors')
 
 
 require('dotenv').config()
 const port = process.env.PORT || PORT
 
-const app = express()
+app.use(cors())
 
 app.get('/', (req, res) => res.send(`<h1>Welcome!!! </h1>`))
 
-mongoose
-.connect(process.env.URI, { useNewUrlParser: true })
-.then(() => {
-
-    app.use(cors())
-
-    app.use(express.json())
-    app.use("/api", routes)
-
-})
-.catch(error => console.log('error', error.message) )
+app.use(express.json())
+app.use("/api", routes)
 
 app.listen(port, _ => console.log(` Server exterblished at ${port} `))
