@@ -8,7 +8,6 @@ const db = mongoose
 .then(() => {
 
     console.log("Success")
-
 })
 .catch(error => console.log('error', error.message) )
 

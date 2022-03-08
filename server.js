@@ -12,7 +12,7 @@ const port = process.env.PORT || PORT
 
 app.use(cors())
 
-app.get('/', (req, res) => res.send(`<h1>Welcome!!! </h1>`))
+app.get('/', (req, res) => res.send(`<h1> Welcome!!! </h1>`))
 
 app.use(express.json())
 app.use("/api", routes)

@@ -5,7 +5,7 @@ require("dotenv").config()
 const getAllPosts = async (req, res) => {
     try {
         const allPost = await Post.find({})
-    res.status(200).json({
+    res.status(201).json({
         msg: "Success",
         data: allPost
     })
