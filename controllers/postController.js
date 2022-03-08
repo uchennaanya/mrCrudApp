@@ -53,15 +53,20 @@ const createPost = async (req, res) => {
 
    const deletePost = async (req, res) => {
         try {
-            await Post.findOneAndDelete({_id: req.params.id})
-            return res.status(204).json({
-                msg: "Success",
-                data: ` Post with ${_id} deleted sucessfully `
-            })
-        } catch {
-            res.status(404)
-            res.send({ error: "Post does not exist! "})
-        }
-    }
+
+           const dlete = await Post.findOneAndDelete({_id: req.params.id})
+            if (dlete) {
+                return res.status(204).json({
+                    msg: "Success",
+                    data: ` Post with ${_id} deleted sucessfully `
+                })
+            }
+            } catch {
+                res.status(404)
+                res.send({ error: "Post does not exist! "})
+            }
+            }
+
+
 
     module.exports = { createPost, updatePost, deletePost, getAllPosts }
