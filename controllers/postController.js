@@ -54,7 +54,7 @@ const createPost = async (req, res) => {
    const deletePost = async (req, res) => {
         try {
             await Post.findOneAndDelete({_id: req.params.id})
-            res.status(204).json({
+            return res.status(204).json({
                 msg: "Success",
                 data: ` Post with ${_id} deleted sucessfully `
             })
