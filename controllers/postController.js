@@ -61,17 +61,16 @@ const createPost = async (req, res) => {
    const deletePost = async (req, res) => {
         try {
 
-           const dlete = await Post.findOneAndDelete({_id: req.params.id})
-            if (dlete) {
-                return res.status(204).json({
+            const dlete = await Post.findOneAndDelete({_id: req.params.id})
+
+                dlete && res.status(204).json({
                     msg: "Success",
                     data: `Post with ${dlete._id} deleted sucessfully`
                 })
-            }
             } catch (err) {
                 res.status(404)
                 res.send({ error: err.message})
             }
-            }
+        }
 
     module.exports = { createPost, updatePost, deletePost, getAllPosts }
