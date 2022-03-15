@@ -65,7 +65,7 @@ const createPost = async (req, res) => {
             if (dlete) {
                 return res.status(204).json({
                     msg: "Success",
-                    data: `Post with ${_id} deleted sucessfully`
+                    data: `Post with ${dlete._id} deleted sucessfully`
                 })
             }
             } catch (err) {
