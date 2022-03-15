@@ -9,14 +9,15 @@ const getAllPosts = async (req, res) => {
         msg: "Success",
         data: allPost
     })
-    } catch {
+    } catch(err) {
         res.status(400).json({
-            msg: "Failed"
+            error: err.message
         })
     }
 }
 
 const createPost = async (req, res) => {
+    try{
         const postExist = await Post.findOne({title: req.body.title})
 
         if (postExist) {
@@ -30,9 +31,15 @@ const createPost = async (req, res) => {
                 title: req.body.title,
                 content: req.body.content,
             })
+
             await post.save()
             res.send(post)
         }
+    } catch(err) {
+        res.status(404)
+        res.send({error: err.message})
+    }
+
     }
 
     const updatePost = async (req, res) => {
@@ -45,9 +52,9 @@ const createPost = async (req, res) => {
                 msg: "Success",
                 data: post
             })
-        } catch {
+        } catch(err) {
             res.status(404)
-            res.send({error: "Post dose not exist! "})
+            res.send({error: err.message})
         }
     }
 
@@ -58,15 +65,13 @@ const createPost = async (req, res) => {
             if (dlete) {
                 return res.status(204).json({
                     msg: "Success",
-                    data: ` Post with ${_id} deleted sucessfully `
+                    data: `Post with ${_id} deleted sucessfully`
                 })
             }
-            } catch {
+            } catch (err) {
                 res.status(404)
-                res.send({ error: "Post does not exist! "})
+                res.send({ error: err.message})
             }
             }
-
-
 
     module.exports = { createPost, updatePost, deletePost, getAllPosts }
