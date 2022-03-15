@@ -4,9 +4,11 @@ require('dotenv').config()
 const mongoose = require('mongoose')
 const conn = async () => {
     try {
-        await mongoose.connect(process.env.URI, { useNewUrlParser: true })
+        const db = await mongoose.connect(process.env.URI, { useNewUrlParser: true })
+        console.log(db.connection.modelNames())
     } catch (err){
-    console.log(err)
+
+        console.log(err)
     }
 }
 
